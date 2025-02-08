@@ -14,7 +14,7 @@ router.post("/register", async (req, res) => {
   res.json(result);
 });
 
-router.get("/users", async (req, res) => {
+router.get("/get_users", async (req, res) => {
   var result = await get_user();
   res.json(result);
 });
