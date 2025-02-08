@@ -1,14 +1,15 @@
-const express = require('express');
-const createError = require('http-errors');
+const express = require("express");
+const createError = require("http-errors");
 // const dotenv = require('dotenv').config();
 
 const app = express();
 
+// Middleware
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+// app.use(express.urlencoded({ extended: true }));
 
-const Route = require('./Routes/path');
-app.use('/api', Route);
+const Route = require("./Routes/path");
+app.use("/api", Route);
 
 // 404 handler and pass to error handler
 app.use((req, res, next) => {
@@ -18,7 +19,7 @@ app.use((req, res, next) => {
   next(err);
   */
   // You can use the above code if your not using the http-errors module
-  next(createError(404, 'Not found'));
+  next(createError(404, "Not found"));
 });
 
 // Error handler
@@ -27,13 +28,13 @@ app.use((err, req, res, next) => {
   res.send({
     error: {
       status: err.status || 500,
-      message: err.message
-    }
+      message: err.message,
+    },
   });
 });
 
-const port = 3000
+const port = 3000;
 
 app.listen(port, () => {
-  console.log(`Listening on port ${port}`)
-})
+  console.log(`Listening on port ${port}`);
+});
